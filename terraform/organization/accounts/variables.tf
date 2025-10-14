@@ -25,14 +25,22 @@ variable "users" {
     given_name          = string
     family_name         = string
     email               = string
+    phone               = optional(string)
     group_associations  = list(string)
+    billing             = optional(bool, false)
+    operations          = optional(bool, false)
+    security            = optional(bool, false)
   }))
   default = {
     admin = {
       given_name         = "Martin"
       family_name        = "Komara"
       email              = "martin.komara+aired-admin@gmail.com"
+      phone              = "+421917718607"
       group_associations = ["admin"]
+      billing            = true
+      operations         = true
+      security           = true
     }
   }
   description = "A map of IAM Identity Center users to create with their configuration."

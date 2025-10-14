@@ -74,7 +74,8 @@
 
 7. Test that the infrastructure is up to date by running `terraform plan`
 
+## Initial settings
 
-
-
+Enable IAM access to the cost explorer according to 
+https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started-account-iam.html
 
