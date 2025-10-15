@@ -1,0 +1,25 @@
+{
+  "name": "@aired/domain",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "development": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "clean": "rimraf dist/ *.tsbuildinfo",
+    "build": "tsc --build",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "Martin Komara",
+  "license": "ISC",
+  "dependencies": {
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "typescript": "*"
+  }
+}
