@@ -25,3 +25,6 @@ export default class Organization implements OrganizationType {
     return Organization.clone(OrganizationSchema.parse(other));
   }
 }
+
+export const OrganizationCreateSchema = OrganizationSchema.omit({ id: true });
+export type OrganizationCreateType = z.infer<typeof OrganizationCreateSchema>;

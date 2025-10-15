@@ -55,3 +55,6 @@ export default class Document implements DocumentType {
     return Document.clone(DocumentSchema.parse(other));
   }
 }
+
+export const DocumentCreateSchema = DocumentSchema.omit({ id: true });
+export type DocumentCreateType = z.infer<typeof DocumentCreateSchema>;

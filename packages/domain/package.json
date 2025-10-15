@@ -1,6 +1,7 @@
 {
   "name": "@aired/domain",
   "version": "1.0.0",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

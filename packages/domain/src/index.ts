@@ -2,8 +2,10 @@ export type { Aggregate } from './aggregate';
 
 export {
   OrganizationSchema,
+  OrganizationCreateSchema,
   default as Organization,
   type OrganizationType,
+  type OrganizationCreateType,
 } from './organization/aggregate/organization.js';
 export {
   OrganizationIdSchema,
@@ -13,8 +15,10 @@ export {
 
 export {
   ProjectSchema,
+  ProjectCreateSchema,
   default as Project,
   type ProjectType,
+  type ProjectCreateType,
 } from './project/aggregate/project.js';
 export {
   ProjectIdSchema,
@@ -24,8 +28,10 @@ export {
 
 export {
   DocumentSchema,
+  DocumentCreateSchema,
   default as Document,
   type DocumentType,
+  type DocumentCreateType,
 } from './document/aggregate/document.js';
 export {
   DocumentIdSchema,

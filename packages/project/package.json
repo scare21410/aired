@@ -1,0 +1,29 @@
+{
+  "name": "@aired/project",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "development": "./src/index.ts",
+      "node": "./dist/index.node.ts"
+    }
+  },
+  "scripts": {
+    "clean": "rimraf dist/ *.tsbuildinfo",
+    "build": "tsc --build",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "Martin Komara",
+  "license": "ISC",
+  "dependencies": {
+    "@aired/domain": "workspace:*",
+    "@aired/domain-database": "workspace:*",
+    "@aired/domain-repository": "workspace:*"
+  },
+  "devDependencies": {
+    "@aired/domain-fakes": "workspace:*",
+    "typescript": "*"
+  }
+}

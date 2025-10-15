@@ -33,3 +33,6 @@ export default class Project implements ProjectType {
     return Project.clone(ProjectSchema.parse(other));
   }
 }
+
+export const ProjectCreateSchema = ProjectSchema.omit({ id: true });
+export type ProjectCreateType = z.infer<typeof ProjectCreateSchema>;

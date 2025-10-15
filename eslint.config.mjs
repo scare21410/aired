@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import prettier from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
+import pluginImport from 'eslint-plugin-import';
 
 export default tseslint.config(
   js.configs.recommended,
@@ -11,6 +12,7 @@ export default tseslint.config(
   {
     plugins: {
       prettier,
+      import: pluginImport,
     },
     languageOptions: {
       parserOptions: {
@@ -26,6 +28,17 @@ export default tseslint.config(
         'error',
         { argsIgnorePattern: '^_' },
       ],
+      'import/no-cycle': ['error', { maxDepth: Infinity }], // Rule for detecting import cycles
+      'import/no-relative-packages': 'error',
+      'import/no-self-import': 'error',
+      'import/order': 'error',
+
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unnecessary-type-parameters': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-redundant-type-constituents': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
     },
   },
   {

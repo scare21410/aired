@@ -1,6 +1,7 @@
 {
   "name": "@aired/domain-repository",
   "version": "1.0.0",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -20,6 +21,8 @@
     "@aired/domain": "workspace:*"
   },
   "devDependencies": {
-    "typescript": "*"
+    "@aired/domain-fakes": "workspace:*",
+    "typescript": "*",
+    "vitest": "*"
   }
 }

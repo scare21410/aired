@@ -1,6 +1,7 @@
 {
   "name": "@aired/domain-fakes",
   "version": "1.0.0",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

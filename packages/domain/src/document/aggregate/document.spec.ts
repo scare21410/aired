@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import Document from './document';
 import { createDocumentId } from '../value/document-id';
 import { createOrganizationId } from '../../organization/value/organization-id';
 import { createProjectId } from '../../project/value/project-id';
 import { createLanguageCode } from '../../i18n/value/language-code';
 import { createEmptyDocumentTranscript } from '../value/document-transcript';
+import Document from './document.js';
 
 describe('Document', () => {
   describe('from', () => {
@@ -28,7 +28,7 @@ describe('Document', () => {
       expect(document.projectId).toBe(data.projectId);
       expect(document.language).toBe(data.language);
       expect(document.title).toBe(data.title);
-      expect(document.transcript).toBe(data.transcript);
+      expect(document.transcript).toEqual(data.transcript);
     });
 
     it('should throw error for invalid document UUID', () => {

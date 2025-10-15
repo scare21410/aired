@@ -22,3 +22,12 @@
 - Use file.spec.ts for unit tests
 - Use file.itest.ts for integration tests
 - Use vitest as a testing framework
+- Use @aired/domain-fakes for test data
+- Use defaultAggregateSetFactory() to initialize DomainDatabase with pre-populated test data
+- Group tests using nested describe blocks by method or feature
+- Test both happy paths and edge cases
+- Include integration scenario tests that verify full workflows
+- Use beforeEach to set up fresh test instances for each test
+- Test format: arrange, act, assert pattern
+- When naming test, avoid using it('should create entity'), rather use it('creates entity')
+- To run tests, use command `vitest run <file>`
