@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { createDocumentId } from '../value/document-id';
-import { createOrganizationId } from '../../organization/value/organization-id';
-import { createProjectId } from '../../project/value/project-id';
-import { createLanguageCode } from '../../i18n/value/language-code';
-import { createEmptyDocumentTranscript } from '../value/document-transcript';
+import { createDocumentId } from '../value/document-id.js';
+import { createOrganizationId } from '../../organization/value/organization-id.js';
+import { createProjectId } from '../../project/value/project-id.js';
+import { createLanguageCode } from '../../i18n/value/language-code.js';
+import { createEmptyDocumentTranscript } from '../value/document-transcript.js';
 import Document from './document.js';
 
 describe('Document', () => {

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { OrganizationIdSchema } from '../value/organization-id';
+import { OrganizationIdSchema } from '../value/organization-id.js';
 
 export const OrganizationSchema = z.object({
   id: OrganizationIdSchema,

@@ -7,7 +7,7 @@ import {
 } from '@aired/domain';
 import { RepositoryEventTarget } from '@aired/domain-repository';
 import type { DomainDatabase } from '@aired/domain-database';
-import type IDocumentRepository from '../../../application/repository/document-repository';
+import type IDocumentRepository from '../../../application/repository/document-repository.js';
 
 export default class FakeDocumentRepository
   extends RepositoryEventTarget<Document>

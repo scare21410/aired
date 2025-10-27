@@ -4,7 +4,7 @@ import {
   organizationAFactory,
   organizationBFactory,
 } from '@aired/domain-fakes';
-import RepositoryEventTarget from './repository-event-target';
+import RepositoryEventTarget from './repository-event-target.js';
 
 class TestRepositoryEventTarget extends RepositoryEventTarget<Organization> {
   public triggerEmitRead(aggregate: Organization): void {

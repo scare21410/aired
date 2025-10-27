@@ -6,7 +6,7 @@ import {
   organizationBFactory,
 } from '@aired/domain-fakes';
 import { createOrganizationId, Organization } from '@aired/domain';
-import FakeOrganizationRepository from './fake-organization-repository';
+import FakeOrganizationRepository from './fake-organization-repository.js';
 
 describe('FakeOrganizationRepository', () => {
   let db: DomainDatabase;

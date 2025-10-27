@@ -8,7 +8,7 @@ import {
   projectBFactory,
 } from '@aired/domain-fakes';
 import { createProjectId, Project } from '@aired/domain';
-import FakeProjectRepository from './fake-project-repository';
+import FakeProjectRepository from './fake-project-repository.js';
 
 describe('FakeProjectRepository', () => {
   let db: DomainDatabase;

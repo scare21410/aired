@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import Organization from './organization';
+import { createOrganizationId } from '../value/organization-id.js';
+import Organization from './organization.js';
 
 describe('Organization', () => {
   describe('from', () => {
@@ -37,7 +38,7 @@ describe('Organization', () => {
   describe('clone', () => {
     it('should create a new Organization instance with same values', () => {
       const original = new Organization(
-        '123e4567-e89b-12d3-a456-426614174000',
+        createOrganizationId('123e4567-e89b-12d3-a456-426614174000'),
         'Test Organization',
       );
 

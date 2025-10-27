@@ -1,4 +1,4 @@
-export type { Aggregate } from './aggregate';
+export type { Aggregate } from './aggregate.js';
 
 export {
   OrganizationSchema,
@@ -50,3 +50,38 @@ export {
   type LanguageCode,
   createLanguageCode,
 } from './i18n/value/language-code.js';
+
+export {
+  UserSchema,
+  UserCreateSchema,
+  UserStatusSchema,
+  default as User,
+  type UserType,
+  type UserCreateType,
+  type UserStatus,
+} from './user/aggregate/user.js';
+export {
+  UserIdSchema,
+  type UserId,
+  createUserId,
+} from './user/value/user-id.js';
+
+export {
+  MemberSchema,
+  MemberCreateSchema,
+  MemberProjectSchema,
+  default as Member,
+  type MemberType,
+  type MemberCreateType,
+  type MemberProjectType,
+} from './organization/aggregate/member.js';
+export {
+  MemberIdSchema,
+  type MemberId,
+  createMemberId,
+} from './organization/value/member-id.js';
+export {
+  PermissionSchema,
+  type Permission,
+  createPermission,
+} from './organization/value/permission.js';

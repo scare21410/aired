@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import Project from './project';
-import { createProjectId } from '../value/project-id';
-import { createOrganizationId } from '../../organization/value/organization-id';
+import { createProjectId } from '../value/project-id.js';
+import { createOrganizationId } from '../../organization/value/organization-id.js';
+import Project from './project.js';
 
 describe('Project', () => {
   describe('from', () => {

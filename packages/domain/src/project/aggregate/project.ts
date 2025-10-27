@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { OrganizationIdSchema } from '../../organization/value/organization-id';
-import { ProjectIdSchema } from '../value/project-id';
+import { OrganizationIdSchema } from '../../organization/value/organization-id.js';
+import { ProjectIdSchema } from '../value/project-id.js';
 
 export const ProjectSchema = z.object({
   id: ProjectIdSchema,

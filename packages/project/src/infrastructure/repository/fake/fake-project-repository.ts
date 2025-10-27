@@ -6,7 +6,7 @@ import {
 } from '@aired/domain';
 import { RepositoryEventTarget } from '@aired/domain-repository';
 import type { DomainDatabase } from '@aired/domain-database';
-import type IProjectRepository from '../../../application/repository/project-repository';
+import type IProjectRepository from '../../../application/repository/project-repository.js';
 
 export default class FakeProjectRepository
   extends RepositoryEventTarget<Project>

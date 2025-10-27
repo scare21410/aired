@@ -1,7 +1,7 @@
 import { Organization, type OrganizationCreateType } from '@aired/domain';
 import { RepositoryEventTarget } from '@aired/domain-repository';
 import type { DomainDatabase } from '@aired/domain-database';
-import type IOrganizationRepository from '../../../application/repository/organization-repository';
+import type IOrganizationRepository from '../../../application/repository/organization-repository.js';
 
 export default class FakeOrganizationRepository
   extends RepositoryEventTarget<Organization>

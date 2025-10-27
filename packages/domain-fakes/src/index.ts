@@ -8,5 +8,12 @@ export { default as documentEmptyFactory } from './document/document-empty-facto
 export { default as documentSimpleFactory } from './document/document-simple-factory.js';
 export { default as documentComplexFactory } from './document/document-complex-factory.js';
 
-export { default as defaultAggregateSetFactory } from './default-aggregate-set-factory';
-export { default as aggregateSetFactory } from './aggregate-set-factory';
+export { default as userAFactory } from './user/user-a-factory.js';
+export { default as userBFactory } from './user/user-b-factory.js';
+export { default as userUnconfirmedFactory } from './user/user-unconfirmed-factory.js';
+
+export { default as memberAFactory } from './organization/member-a-factory.js';
+export { default as memberBFactory } from './organization/member-b-factory.js';
+
+export { default as defaultAggregateSetFactory } from './default-aggregate-set-factory.js';
+export { default as aggregateSetFactory } from './aggregate-set-factory.js';

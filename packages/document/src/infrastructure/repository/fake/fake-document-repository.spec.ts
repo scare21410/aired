@@ -15,7 +15,7 @@ import {
   createEmptyDocumentTranscript,
   Document,
 } from '@aired/domain';
-import FakeDocumentRepository from './fake-document-repository';
+import FakeDocumentRepository from './fake-document-repository.js';
 
 describe('FakeDocumentRepository', () => {
   let db: DomainDatabase;

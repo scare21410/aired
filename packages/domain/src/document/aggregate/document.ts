@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { OrganizationIdSchema } from '../../organization/value/organization-id';
-import { ProjectIdSchema } from '../../project/value/project-id';
-import { LanguageCodeSchema } from '../../i18n/value/language-code';
-import { DocumentIdSchema } from '../value/document-id';
-import { DocumentTranscriptSchema } from '../value/document-transcript';
+import { OrganizationIdSchema } from '../../organization/value/organization-id.js';
+import { ProjectIdSchema } from '../../project/value/project-id.js';
+import { LanguageCodeSchema } from '../../i18n/value/language-code.js';
+import { DocumentIdSchema } from '../value/document-id.js';
+import { DocumentTranscriptSchema } from '../value/document-transcript.js';
 
 export const DocumentSchema = z.object({
   id: DocumentIdSchema,
