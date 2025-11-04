@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    { "path": "../../packages/domain-database" },
+    { "path": "../../packages/domain-fakes" },
+    { "path": "../../packages/project" },
+    { "path": "../../packages/trpc" },
+    { "path": "../../packages/ui" }
+  ]
+}

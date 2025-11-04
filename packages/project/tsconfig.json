@@ -4,13 +4,16 @@
     "declaration": true,
     "declarationMap": true,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "jsx": "react-jsx"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"],
   "references": [
     { "path": "../domain" },
     { "path": "../domain-database" },
-    { "path": "../domain-repository" }
+    { "path": "../domain-repository" },
+    { "path": "../trpc" },
+    { "path": "../ui" }
   ]
 }

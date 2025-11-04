@@ -20,7 +20,7 @@ describe('FakeProjectRepository', () => {
   });
 
   describe('create', () => {
-    it('should create a new project and return the project', async () => {
+    it('creates a new project and returns the project', async () => {
       const organizationA = organizationAFactory();
       const project = await repository.create({
         organizationId: organizationA.id,
@@ -33,7 +33,7 @@ describe('FakeProjectRepository', () => {
       expect(project.name).toBe('Test Project');
     });
 
-    it('should insert the project into the database', async () => {
+    it('inserts the project into the database', async () => {
       const organizationA = organizationAFactory();
       const project = await repository.create({
         organizationId: organizationA.id,
@@ -45,7 +45,7 @@ describe('FakeProjectRepository', () => {
       expect(found?.name).toBe('Test Project');
     });
 
-    it('should create projects with unique ids', async () => {
+    it('creates projects with unique ids', async () => {
       const organizationA = organizationAFactory();
       const project1 = await repository.create({
         organizationId: organizationA.id,
@@ -59,7 +59,7 @@ describe('FakeProjectRepository', () => {
       expect(project1.id).not.toBe(project2.id);
     });
 
-    it('should emit create event when project is created', async () => {
+    it('emits create event when project is created', async () => {
       const organizationA = organizationAFactory();
       const eventPromise = new Promise<Project>((resolve) => {
         repository.addEventListener('create', (event) => {
@@ -79,7 +79,7 @@ describe('FakeProjectRepository', () => {
   });
 
   describe('update', () => {
-    it('should update an existing project', async () => {
+    it('updates an existing project', async () => {
       const organizationA = organizationAFactory();
       const project = projectAFactory(organizationA);
 
@@ -94,7 +94,7 @@ describe('FakeProjectRepository', () => {
       expect(found?.name).toBe('Updated Name');
     });
 
-    it('should not throw when updating a project', async () => {
+    it('does not throw when updating a project', async () => {
       const organizationA = organizationAFactory();
       const project = projectAFactory(organizationA);
 
@@ -106,7 +106,7 @@ describe('FakeProjectRepository', () => {
       await expect(repository.update(updated)).resolves.toBeUndefined();
     });
 
-    it('should emit update event when project is updated', async () => {
+    it('emits update event when project is updated', async () => {
       const organizationA = organizationAFactory();
       const project = projectAFactory(organizationA);
       const updated = new Project(
@@ -130,7 +130,7 @@ describe('FakeProjectRepository', () => {
   });
 
   describe('delete', () => {
-    it('should remove a project from the database', async () => {
+    it('removes a project from the database', async () => {
       const organizationA = organizationAFactory();
       const project = projectAFactory(organizationA);
 
@@ -140,14 +140,14 @@ describe('FakeProjectRepository', () => {
       expect(found).toBeUndefined();
     });
 
-    it('should not throw when deleting a project', async () => {
+    it('does not throw when deleting a project', async () => {
       const organizationA = organizationAFactory();
       const project = projectAFactory(organizationA);
 
       await expect(repository.delete(project)).resolves.toBeUndefined();
     });
 
-    it('should handle deleting non-existent project gracefully', async () => {
+    it('handles deleting non-existent project gracefully', async () => {
       const organizationA = organizationAFactory();
       const nonExistentProject = new Project(
         createProjectId(crypto.randomUUID()),
@@ -160,7 +160,7 @@ describe('FakeProjectRepository', () => {
       ).resolves.toBeUndefined();
     });
 
-    it('should emit delete event when project is deleted', async () => {
+    it('emits delete event when project is deleted', async () => {
       const organizationA = organizationAFactory();
       const project = projectAFactory(organizationA);
 
@@ -178,138 +178,8 @@ describe('FakeProjectRepository', () => {
     });
   });
 
-  describe('find', () => {
-    it('should find a project by id and organizationId', async () => {
-      const organizationA = organizationAFactory();
-      const project = projectAFactory(organizationA);
-
-      const found = await repository.find(project.id, organizationA.id);
-
-      expect(found).toBeDefined();
-      expect(found?.id).toBe(project.id);
-      expect(found?.organizationId).toBe(organizationA.id);
-      expect(found?.name).toBe(project.name);
-    });
-
-    it('should return undefined when project does not exist', async () => {
-      const organizationA = organizationAFactory();
-      const nonExistentId = createProjectId(crypto.randomUUID());
-
-      const found = await repository.find(nonExistentId, organizationA.id);
-
-      expect(found).toBeUndefined();
-    });
-
-    it('should return undefined when organizationId does not match', async () => {
-      const organizationA = organizationAFactory();
-      const organizationB = organizationBFactory();
-      const project = projectAFactory(organizationA);
-
-      const found = await repository.find(project.id, organizationB.id);
-
-      expect(found).toBeUndefined();
-    });
-
-    it('should find the correct project when multiple exist', async () => {
-      const organizationA = organizationAFactory();
-      const organizationB = organizationBFactory();
-      const projectA = projectAFactory(organizationA);
-      const projectB = projectBFactory(organizationB);
-
-      const foundA = await repository.find(projectA.id, organizationA.id);
-      const foundB = await repository.find(projectB.id, organizationB.id);
-
-      expect(foundA?.id).toBe(projectA.id);
-      expect(foundA?.name).toBe('Project A');
-      expect(foundB?.id).toBe(projectB.id);
-      expect(foundB?.name).toBe('Project B');
-    });
-
-    it('should find projects from pre-populated database', async () => {
-      const organizationA = organizationAFactory();
-      const projectA = projectAFactory(organizationA);
-
-      const found = await repository.find(projectA.id, organizationA.id);
-
-      expect(found).toBeDefined();
-      expect(found?.id).toBe(projectA.id);
-    });
-  });
-
-  describe('findByOrganizationId', () => {
-    it('should find all projects for an organization', async () => {
-      const organizationA = organizationAFactory();
-      const projectA = projectAFactory(organizationA);
-
-      const projects = await repository.findByOrganizationId(organizationA.id);
-
-      expect(projects.length).toBeGreaterThan(0);
-      expect(projects.some((p) => p.id === projectA.id)).toBe(true);
-      expect(projects.every((p) => p.organizationId === organizationA.id)).toBe(
-        true,
-      );
-    });
-
-    it('should return empty array when no projects exist for organization', async () => {
-      const organizationA = organizationAFactory();
-      const projectA = projectAFactory(organizationA);
-      const projectB = projectBFactory(organizationA);
-      await repository.delete(projectA);
-      await repository.delete(projectB);
-
-      const projects = await repository.findByOrganizationId(organizationA.id);
-
-      expect(projects).toEqual([]);
-    });
-
-    it('should only return projects for specified organization', async () => {
-      const organizationA = organizationAFactory();
-      const organizationB = organizationBFactory();
-
-      const projectsA = await repository.findByOrganizationId(organizationA.id);
-      const projectsB = await repository.findByOrganizationId(organizationB.id);
-
-      expect(
-        projectsA.every((p) => p.organizationId === organizationA.id),
-      ).toBe(true);
-      expect(
-        projectsB.every((p) => p.organizationId === organizationB.id),
-      ).toBe(true);
-      expect(projectsA.some((p) => p.organizationId === organizationB.id)).toBe(
-        false,
-      );
-      expect(projectsB.some((p) => p.organizationId === organizationA.id)).toBe(
-        false,
-      );
-    });
-
-    it('should include newly created projects', async () => {
-      const organizationA = organizationAFactory();
-
-      const newProject = await repository.create({
-        organizationId: organizationA.id,
-        name: 'New Project',
-      });
-
-      const projects = await repository.findByOrganizationId(organizationA.id);
-
-      expect(projects.some((p) => p.id === newProject.id)).toBe(true);
-    });
-
-    it('should not include deleted projects', async () => {
-      const organizationA = organizationAFactory();
-      const project = projectAFactory(organizationA);
-
-      await repository.delete(project);
-
-      const projects = await repository.findByOrganizationId(organizationA.id);
-
-      expect(projects.some((p) => p.id === project.id)).toBe(false);
-    });
-  });
-
   describe('integration scenarios', () => {
-    it('should support create, find, update, and delete workflow', async () => {
+    it('supports create, find, update, and delete workflow', async () => {
       const organizationA = organizationAFactory();
       const project = await repository.create({
         organizationId: organizationA.id,
@@ -338,7 +208,7 @@ describe('FakeProjectRepository', () => {
       expect(foundAfterDelete).toBeUndefined();
     });
 
-    it('should work with pre-populated database from defaultAggregateSetFactory', async () => {
+    it('works with pre-populated database from defaultAggregateSetFactory', async () => {
       const organizationA = organizationAFactory();
       const organizationB = organizationBFactory();
       const projectA = projectAFactory(organizationA);
@@ -361,7 +231,7 @@ describe('FakeProjectRepository', () => {
       expect(foundNew?.name).toBe('New Project');
     });
 
-    it('should update pre-populated projects', async () => {
+    it('updates pre-populated projects', async () => {
       const organizationA = organizationAFactory();
       const projectA = projectAFactory(organizationA);
 
@@ -376,7 +246,7 @@ describe('FakeProjectRepository', () => {
       expect(found?.name).toBe('Modified Project A');
     });
 
-    it('should delete pre-populated projects', async () => {
+    it('deletes pre-populated projects', async () => {
       const organizationB = organizationBFactory();
       const projectB = projectBFactory(organizationB);
 
@@ -386,7 +256,7 @@ describe('FakeProjectRepository', () => {
       expect(found).toBeUndefined();
     });
 
-    it('should emit events for full workflow', async () => {
+    it('emits events for full workflow', async () => {
       const organizationA = organizationAFactory();
       const events: string[] = [];
 
@@ -409,7 +279,7 @@ describe('FakeProjectRepository', () => {
       expect(events).toEqual(['create', 'update', 'delete']);
     });
 
-    it('should isolate projects by organizationId', async () => {
+    it('isolates projects by organizationId', async () => {
       const organizationA = organizationAFactory();
       const organizationB = organizationBFactory();
 

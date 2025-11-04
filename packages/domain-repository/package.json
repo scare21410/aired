@@ -5,7 +5,9 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "development": "./src/index.ts",
+      "development": {
+        "default": "./src/index.ts"
+      },
       "default": "./dist/index.js"
     }
   },
@@ -18,7 +20,8 @@
   "author": "Martin Komara",
   "license": "ISC",
   "dependencies": {
-    "@aired/domain": "workspace:*"
+    "@aired/domain": "workspace:*",
+    "@aired/domain-database": "workspace:*"
   },
   "devDependencies": {
     "@aired/domain-fakes": "workspace:*",

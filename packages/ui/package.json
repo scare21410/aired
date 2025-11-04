@@ -1,0 +1,40 @@
+{
+  "name": "@aired/ui",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "development": {
+        "browser": "./src/index.browser.ts",
+        "default": "./src/index.ts"
+      },
+      "browser": "./dist/index.browser.js",
+      "default": "./dist/index.js"
+    },
+    "./styles.css": "./src/styles.css"
+  },
+  "scripts": {
+    "clean": "rimraf dist/ *.tsbuildinfo coverage",
+    "build": "tsc --build",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "Martin Komara",
+  "license": "ISC",
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "react": "^18.3.1",
+    "tailwindcss": "^3.4.15",
+    "typescript": "*"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1"
+  }
+}

@@ -1,21 +1,16 @@
-import {
-  Project,
-  type ProjectCreateType,
-  type ProjectId,
-  type OrganizationId,
-} from '@aired/domain';
-import { RepositoryEventTarget } from '@aired/domain-repository';
+import { Project, type ProjectCreateType } from '@aired/domain';
 import type { DomainDatabase } from '@aired/domain-database';
 import type IProjectRepository from '../../../application/repository/project-repository.js';
+import FakeProjectReadonlyRepository from './fake-project-readonly-repository.js';
 
 export default class FakeProjectRepository
-  extends RepositoryEventTarget<Project>
+  extends FakeProjectReadonlyRepository
   implements IProjectRepository
 {
   private readonly db: DomainDatabase;
 
   constructor(db: DomainDatabase) {
-    super();
+    super(db);
     this.db = db;
   }
 
@@ -43,26 +38,5 @@ export default class FakeProjectRepository
     this.emitDelete(aggregate);
 
     return Promise.resolve();
-  }
-
-  find(
-    id: ProjectId,
-    organizationId: OrganizationId,
-  ): Promise<Project | undefined> {
-    const aggregate = this.db.find(
-      (project): project is Project =>
-        project instanceof Project &&
-        project.id === id &&
-        project.organizationId === organizationId,
-    );
-    return Promise.resolve(aggregate);
-  }
-
-  findByOrganizationId(organizationId: OrganizationId): Promise<Project[]> {
-    const aggregates = this.db.filter(
-      (project): project is Project =>
-        project instanceof Project && project.organizationId === organizationId,
-    );
-    return Promise.resolve(aggregates);
   }
 }

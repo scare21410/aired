@@ -1,0 +1,31 @@
+{
+  "name": "@aired/trpc",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "development": {
+        "default": "./src/index.ts"
+      },
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "clean": "rimraf dist/ *.tsbuildinfo coverage",
+    "build": "tsc --build",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "Martin Komara",
+  "license": "ISC",
+  "dependencies": {
+    "@aired/errors": "workspace:*",
+    "@trpc/server": "^11.0.0",
+    "@ungap/structured-clone": "^1.3.0"
+  },
+  "devDependencies": {
+    "typescript": "*",
+    "@types/ungap__structured-clone": "^1.2.0"
+  }
+}

@@ -10,6 +10,7 @@
   "exclude": ["node_modules", "dist"],
   "references": [
     { "path": "../domain" },
+    { "path": "../domain-database" },
     { "path": "../domain-fakes" }
   ]
 }
