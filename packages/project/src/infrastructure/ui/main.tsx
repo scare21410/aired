@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { QueryClient } from '@tanstack/react-query';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ThemeProvider } from '@aired/ui';
 import rpcClientFactory from '../rpc-client/rpc-client-factory.js';
 import routerFactory from './router-factory.js';
 import '@aired/ui/styles.css';
@@ -12,8 +13,10 @@ const router = createBrowserRouter([routerFactory()]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <trpc.Provider queryClient={queryClient} client={trpcClient}>
-      <RouterProvider router={router} />
-    </trpc.Provider>
+    <ThemeProvider defaultTheme="light" storageKey="project-ui-theme">
+      <trpc.Provider queryClient={queryClient} client={trpcClient}>
+        <RouterProvider router={router} />
+      </trpc.Provider>
+    </ThemeProvider>
   </StrictMode>,
 );

@@ -33,7 +33,9 @@
     "@aired/trpc": "workspace:*",
     "@aired/ui": "workspace:*",
     "@trpc/server": "^11.7.0",
-    "@whatwg-node/server": "^0.10.13"
+    "@whatwg-node/server": "^0.10.13",
+    "geopattern": "^1.2.3",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@aired/domain-fakes": "workspace:*",

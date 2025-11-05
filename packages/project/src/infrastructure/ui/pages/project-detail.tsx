@@ -1,7 +1,9 @@
 import { useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Button, Separator } from '@aired/ui';
+import { IoChevronBack, IoPencil } from 'react-icons/io5';
+import { Button } from '@aired/ui';
 import rpcClientFactory from '../../rpc-client/rpc-client-factory.js';
+import { getProjectCoverUrl } from '../utils/generate-project-cover.js';
 
 export default function ProjectDetail() {
   const { organizationId, id } = useParams<{
@@ -29,38 +31,40 @@ export default function ProjectDetail() {
       <div className="flex flex-col items-center justify-center py-12">
         <p className="text-muted-foreground mb-4">Project not found</p>
         <Link to={`/organizations/${organizationId!}/projects`}>
-          <Button variant="outline">Back to Projects</Button>
+          <Button variant="outline">
+            <IoChevronBack className="mr-1 h-5 w-5" />
+            Back to Projects
+          </Button>
         </Link>
       </div>
     );
   }
 
+  const coverUrl = getProjectCoverUrl(project.coverImageUrl, project.id);
+
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold">{project.name}</h2>
-        <div className="flex gap-2">
+    <div>
+      <div
+        className="w-[calc(100%+3rem)] h-64 bg-cover bg-center relative flex items-center justify-center -ml-6 -mr-6 -mt-6"
+        style={{ backgroundImage: `url(${coverUrl})` }}
+      >
+        <div className="absolute top-4 left-6">
           <Link to={`/organizations/${organizationId!}/projects`}>
-            <Button variant="outline">Back to Projects</Button>
+            <Button variant="outline">
+              <IoChevronBack className="mr-1 h-5 w-5" />
+              Back
+            </Button>
           </Link>
-          <Button>Edit Project</Button>
         </div>
-      </div>
-      <Separator />
-      <div className="rounded-lg border bg-card p-6">
-        <h3 className="text-xl font-semibold mb-4">Project Details</h3>
-        <dl className="space-y-2">
-          <div>
-            <dt className="text-sm font-medium text-muted-foreground">
-              Project Id
-            </dt>
-            <dd className="text-sm">{project.id}</dd>
-          </div>
-          <div>
-            <dt className="text-sm font-medium text-muted-foreground">Name</dt>
-            <dd className="text-sm">{project.name}</dd>
-          </div>
-        </dl>
+        <div className="absolute top-4 right-6">
+          <Button>
+            <IoPencil className="mr-1 h-5 w-5" />
+            Edit
+          </Button>
+        </div>
+        <h1 className="text-5xl font-bold text-white px-6 text-center text-shadow-lg/30">
+          {project.name}
+        </h1>
       </div>
     </div>
   );

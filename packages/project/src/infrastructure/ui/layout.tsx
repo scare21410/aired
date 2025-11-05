@@ -1,4 +1,4 @@
-import { Outlet, useParams, useNavigate } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import {
   AdminLayout,
   Sidebar,
@@ -6,11 +6,12 @@ import {
   SidebarNavItem,
   Header,
   Logo,
+  ThemeToggle,
 } from '@aired/ui';
+import { IoFolderOpen, IoPeople, IoSettings } from 'react-icons/io5';
 
 export default function ProjectLayout() {
   const { organizationId } = useParams<{ organizationId: string }>();
-  const navigate = useNavigate();
 
   const sidebar = (
     <Sidebar
@@ -22,25 +23,22 @@ export default function ProjectLayout() {
       }
       navigation={
         <div className="space-y-4">
-          <SidebarNavGroup title="Menu">
+          <SidebarNavGroup>
             <SidebarNavItem
+              icon={<IoFolderOpen className="h-5 w-5" />}
               label="Projects"
               active={true}
-              onClick={() => {
-                navigate(`/organizations/${organizationId!}/projects`);
-              }}
+              href={`/organizations/${organizationId!}/projects`}
             />
             <SidebarNavItem
+              icon={<IoPeople className="h-5 w-5" />}
               label="Members"
-              onClick={() => {
-                navigate(`/organizations/${organizationId!}/members`);
-              }}
+              href={`/organizations/${organizationId!}/members`}
             />
             <SidebarNavItem
+              icon={<IoSettings className="h-5 w-5" />}
               label="Settings"
-              onClick={() => {
-                navigate(`/organizations/${organizationId!}/settings`);
-              }}
+              href={`/organizations/${organizationId!}/settings`}
             />
           </SidebarNavGroup>
         </div>
@@ -55,6 +53,7 @@ export default function ProjectLayout() {
 
   const header = (
     <Header
+      actions={<ThemeToggle />}
       user={{
         name: 'Demo User',
         email: 'demo@example.com',
