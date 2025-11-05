@@ -1,1 +1,6 @@
 export * from './components/ui/button.js';
+export * from './components/ui/avatar.js';
+export * from './components/ui/scroll-area.js';
+export * from './components/ui/separator.js';
+export * from './components/ui/logo.js';
+export * from './components/layout/admin-layout.js';
