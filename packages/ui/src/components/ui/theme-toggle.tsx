@@ -1,4 +1,4 @@
-import { IoMoon, IoSunny } from 'react-icons/io5';
+import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '../theme-provider.js';
 import { Button } from './button.js';
 
@@ -16,9 +16,9 @@ export function ThemeToggle() {
   return (
     <Button variant="outline" size="icon" onClick={toggleTheme}>
       {theme === 'dark' ? (
-        <IoSunny className="h-5 w-5" />
+        <Sun className="h-5 w-5" />
       ) : (
-        <IoMoon className="h-5 w-5" />
+        <Moon className="h-5 w-5" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>

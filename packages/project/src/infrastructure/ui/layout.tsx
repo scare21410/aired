@@ -8,7 +8,7 @@ import {
   Logo,
   ThemeToggle,
 } from '@aired/ui';
-import { IoFolderOpen, IoPeople, IoSettings } from 'react-icons/io5';
+import { FolderOpen, Users, Settings } from 'lucide-react';
 
 export default function ProjectLayout() {
   const { organizationId } = useParams<{ organizationId: string }>();
@@ -25,18 +25,18 @@ export default function ProjectLayout() {
         <div className="space-y-4">
           <SidebarNavGroup>
             <SidebarNavItem
-              icon={<IoFolderOpen className="h-5 w-5" />}
+              icon={<FolderOpen className="h-5 w-5" />}
               label="Projects"
               active={true}
               href={`/organizations/${organizationId!}/projects`}
             />
             <SidebarNavItem
-              icon={<IoPeople className="h-5 w-5" />}
+              icon={<Users className="h-5 w-5" />}
               label="Members"
               href={`/organizations/${organizationId!}/members`}
             />
             <SidebarNavItem
-              icon={<IoSettings className="h-5 w-5" />}
+              icon={<Settings className="h-5 w-5" />}
               label="Settings"
               href={`/organizations/${organizationId!}/settings`}
             />

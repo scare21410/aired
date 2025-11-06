@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from '@aired/ui';
 import rpcClientFactory from '../rpc-client/rpc-client-factory.js';
 import routerFactory from './router-factory.js';
-import '@aired/ui/styles.css';
+import './styles.css';
 
 const { trpc, trpcClient } = rpcClientFactory();
 const queryClient = new QueryClient();

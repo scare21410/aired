@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { IoChevronBack, IoPencil } from 'react-icons/io5';
+import { ChevronLeft, Pencil } from 'lucide-react';
 import { Button } from '@aired/ui';
 import rpcClientFactory from '../../rpc-client/rpc-client-factory.js';
 import { getProjectCoverUrl } from '../utils/generate-project-cover.js';
@@ -32,7 +32,7 @@ export default function ProjectDetail() {
         <p className="text-muted-foreground mb-4">Project not found</p>
         <Link to={`/organizations/${organizationId!}/projects`}>
           <Button variant="outline">
-            <IoChevronBack className="mr-1 h-5 w-5" />
+            <ChevronLeft className="mr-1 h-5 w-5" />
             Back to Projects
           </Button>
         </Link>
@@ -51,14 +51,14 @@ export default function ProjectDetail() {
         <div className="absolute top-4 left-6">
           <Link to={`/organizations/${organizationId!}/projects`}>
             <Button variant="outline">
-              <IoChevronBack className="mr-1 h-5 w-5" />
+              <ChevronLeft className="mr-1 h-5 w-5" />
               Back
             </Button>
           </Link>
         </div>
         <div className="absolute top-4 right-6">
           <Button>
-            <IoPencil className="mr-1 h-5 w-5" />
+            <Pencil className="mr-1 h-5 w-5" />
             Edit
           </Button>
         </div>

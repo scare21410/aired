@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IoMenu, IoClose } from 'react-icons/io5';
+import { Menu, X } from 'lucide-react';
 import { cn } from '../../lib/utils.js';
 import { ScrollArea } from '../ui/scroll-area.js';
 import { Separator } from '../ui/separator.js';
@@ -87,9 +87,9 @@ export function Sidebar({ logo, navigation, footer }: SidebarProps) {
             className={cn(!sidebarOpen && 'mx-auto')}
           >
             {sidebarOpen ? (
-              <IoClose className="h-5 w-5" />
+              <X className="h-5 w-5" />
             ) : (
-              <IoMenu className="h-5 w-5" />
+              <Menu className="h-5 w-5" />
             )}
           </Button>
         </div>
@@ -132,7 +132,7 @@ export function SidebarNavItem({
 
   const content = (
     <>
-      {icon && <span className="flex-shrink-0">{icon}</span>}
+      {icon && <span className="shrink-0">{icon}</span>}
       {sidebarOpen && <span>{label}</span>}
     </>
   );

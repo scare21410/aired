@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { IoAdd } from 'react-icons/io5';
+import { Plus } from 'lucide-react';
 import { Button } from '@aired/ui';
 import rpcClientFactory from '../../rpc-client/rpc-client-factory.js';
 import { getProjectCoverUrl } from '../utils/generate-project-cover.js';
@@ -24,7 +24,7 @@ export default function ProjectList() {
           No projects found for this organization.
         </p>
         <Button>
-          <IoAdd className="mr-1 h-5 w-5" />
+          <Plus className="mr-1 h-5 w-5" />
           Create Project
         </Button>
       </div>
@@ -36,7 +36,7 @@ export default function ProjectList() {
       <div className="flex items-center justify-between">
         <h2 className="text-3xl font-bold">Projects</h2>
         <Button>
-          <IoAdd className="mr-1 h-5 w-5" />
+          <Plus className="mr-1 h-5 w-5" />
           Create Project
         </Button>
       </div>
