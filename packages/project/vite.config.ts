@@ -11,5 +11,10 @@ export default defineConfig({
       '/_trpc': 'http://localhost:9000',
     },
   },
+  resolve: {
+    alias: {
+      '@': '@aired/ui',
+    },
+  },
   plugins: [react(), tailwindcss()],
 });

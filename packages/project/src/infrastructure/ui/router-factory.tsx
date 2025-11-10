@@ -1,7 +1,16 @@
-import type { RouteObject } from 'react-router-dom';
-import Layout from './layout.js';
+import { AppLayout } from '@aired/ui';
+import { Outlet, type RouteObject, useParams } from 'react-router-dom';
 import ProjectList from './pages/project-list.js';
 import ProjectDetail from './pages/project-detail.js';
+
+const Layout = () => {
+  const { organizationId } = useParams<{ organizationId: string }>();
+  return (
+    <AppLayout organizationId={organizationId!}>
+      <Outlet />
+    </AppLayout>
+  );
+};
 
 export default function routerFactory() {
   return {
