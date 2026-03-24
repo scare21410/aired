@@ -40,7 +40,11 @@ export {
 } from './document/value/document-id.js';
 export {
   DocumentTranscriptSchema,
+  SpeakerSectionSchema,
+  SpeakerSpanSchema,
   type DocumentTranscript,
+  type SpeakerSection,
+  type SpeakerSpan,
   createDocumentTranscript,
   createEmptyDocumentTranscript,
 } from './document/value/document-transcript.js';
@@ -85,3 +89,22 @@ export {
   type Permission,
   createPermission,
 } from './organization/value/permission.js';
+
+export {
+  SpeakerSchema,
+  SpeakerCreateSchema,
+  default as Speaker,
+  type SpeakerType,
+  type SpeakerCreateType,
+} from './speaker/aggregate/speaker.js';
+export {
+  SpeakerIdSchema,
+  type SpeakerId,
+  createSpeakerId,
+} from './speaker/value/speaker-id.js';
+export { VoiceSchema, type Voice, createVoice } from './speaker/value/voice.js';
+export {
+  VoiceProviderSchema,
+  type VoiceProvider,
+  createVoiceProvider,
+} from './speaker/value/voice-provider.js';

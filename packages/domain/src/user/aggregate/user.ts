@@ -26,6 +26,7 @@ export const UserSchema = z.object({
   updatedAt: z.date(),
   givenName: z.string().optional(),
   familyName: z.string().optional(),
+  avatarUrl: z.string().optional(),
 });
 
 export type UserType = z.infer<typeof UserSchema>;
@@ -43,6 +44,7 @@ export default class User implements UserType {
   public readonly updatedAt: UserType['updatedAt'];
   public readonly givenName: UserType['givenName'];
   public readonly familyName: UserType['familyName'];
+  public readonly avatarUrl: UserType['avatarUrl'];
 
   constructor(
     id: UserType['id'],
@@ -57,6 +59,7 @@ export default class User implements UserType {
     updatedAt: UserType['updatedAt'],
     givenName: UserType['givenName'],
     familyName: UserType['familyName'],
+    avatarUrl: UserType['avatarUrl'],
   ) {
     this.id = id;
     this.username = username;
@@ -70,6 +73,7 @@ export default class User implements UserType {
     this.updatedAt = updatedAt;
     this.givenName = givenName;
     this.familyName = familyName;
+    this.avatarUrl = avatarUrl;
   }
 
   static clone(other: User) {
@@ -86,6 +90,7 @@ export default class User implements UserType {
       other.updatedAt,
       other.givenName,
       other.familyName,
+      other.avatarUrl,
     );
   }
 
@@ -104,6 +109,7 @@ export default class User implements UserType {
       parsed.updatedAt,
       parsed.givenName,
       parsed.familyName,
+      parsed.avatarUrl,
     );
   }
 }
@@ -120,6 +126,7 @@ export const UserCreateSchema = z.object({
   updatedAt: z.date().optional(),
   givenName: z.string().optional(),
   familyName: z.string().optional(),
+  avatarUrl: z.string().optional(),
   temporaryPassword: z.string().max(256).optional(),
 });
 

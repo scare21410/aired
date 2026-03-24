@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { SpeakerIdSchema } from '../../speaker/value/speaker-id.js';
 
 const BoldMarkSchema = z.object({
   type: z.literal('bold'),
@@ -69,9 +70,29 @@ const HardBreakNodeSchema = z.object({
   type: z.literal('hardBreak'),
 });
 
-const InlineNodeSchema = z.discriminatedUnion('type', [
+interface SpeakerSpanNode {
+  type: 'speakerSpan';
+  attrs: { speakerId: string };
+  content?: InlineNode[];
+}
+
+type InlineNode =
+  | z.infer<typeof TextNodeSchema>
+  | z.infer<typeof HardBreakNodeSchema>
+  | SpeakerSpanNode;
+
+const SpeakerSpanSchema: z.ZodType<SpeakerSpanNode> = z.object({
+  type: z.literal('speakerSpan'),
+  attrs: z.object({
+    speakerId: SpeakerIdSchema,
+  }),
+  content: z.array(z.lazy(() => InlineNodeSchema)).optional(),
+}) as z.ZodType<SpeakerSpanNode>;
+
+const InlineNodeSchema: z.ZodType<InlineNode> = z.union([
   TextNodeSchema,
   HardBreakNodeSchema,
+  SpeakerSpanSchema,
 ]);
 
 const ImageNodeSchema = z.object({
@@ -89,6 +110,16 @@ const HorizontalRuleNodeSchema = z.object({
 
 const ListItemNodeSchema = z.object({
   type: z.literal('listItem'),
+  get content() {
+    return z.array(BlockNodeSchema).optional();
+  },
+});
+
+const SpeakerSectionSchema = z.object({
+  type: z.literal('speakerSection'),
+  attrs: z.object({
+    speakerId: SpeakerIdSchema,
+  }),
   get content() {
     return z.array(BlockNodeSchema).optional();
   },
@@ -136,6 +167,7 @@ const BlockNodeSchema = z.union([
   }),
   HorizontalRuleNodeSchema,
   ImageNodeSchema,
+  SpeakerSectionSchema,
 ]);
 
 export const DocumentTranscriptSchema = z
@@ -146,6 +178,10 @@ export const DocumentTranscriptSchema = z
   .brand(Symbol('DocumentTranscript'));
 
 export type DocumentTranscript = z.infer<typeof DocumentTranscriptSchema>;
+export type SpeakerSection = z.infer<typeof SpeakerSectionSchema>;
+export type { SpeakerSpanNode as SpeakerSpan };
+
+export { SpeakerSectionSchema, SpeakerSpanSchema };
 
 export function createDocumentTranscript(
   transcript: unknown,
