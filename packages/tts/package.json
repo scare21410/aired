@@ -1,0 +1,26 @@
+{
+  "name": "@aired/tts",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "development": {
+        "default": "./src/index.ts"
+      },
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "clean": "rimraf dist/ *.tsbuildinfo",
+    "build": "tsc --build",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "Martin Komara",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "*"
+  }
+}
