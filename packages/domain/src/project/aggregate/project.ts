@@ -7,7 +7,7 @@ export const ProjectSchema = z.object({
   id: ProjectIdSchema,
   organizationId: OrganizationIdSchema,
   name: z.string(),
-  defaultHosts: z.array(SpeakerIdSchema),
+  defaultHosts: z.array(SpeakerIdSchema).default([]),
   coverImageUrl: z.string().optional(),
 });
 
