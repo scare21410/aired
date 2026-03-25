@@ -40,11 +40,7 @@ export {
 } from './document/value/document-id.js';
 export {
   DocumentTranscriptSchema,
-  SpeakerSectionSchema,
-  SpeakerSpanSchema,
   type DocumentTranscript,
-  type SpeakerSection,
-  type SpeakerSpan,
   createDocumentTranscript,
   createEmptyDocumentTranscript,
 } from './document/value/document-transcript.js';

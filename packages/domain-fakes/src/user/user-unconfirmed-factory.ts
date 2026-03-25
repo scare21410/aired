@@ -14,5 +14,6 @@ export default function userUnconfirmedFactory() {
     new Date('2024-03-01T09:00:00Z'),
     undefined,
     undefined,
+    undefined,
   );
 }

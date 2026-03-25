@@ -48,6 +48,13 @@ const SuperscriptMarkSchema = z.object({
   type: z.literal('superscript'),
 });
 
+const SpeakerMarkSchema = z.object({
+  type: z.literal('speaker'),
+  attrs: z.object({
+    speakerId: SpeakerIdSchema,
+  }),
+});
+
 const MarkSchema = z.discriminatedUnion('type', [
   BoldMarkSchema,
   ItalicMarkSchema,
@@ -58,6 +65,7 @@ const MarkSchema = z.discriminatedUnion('type', [
   HighlightMarkSchema,
   SubscriptMarkSchema,
   SuperscriptMarkSchema,
+  SpeakerMarkSchema,
 ]);
 
 const TextNodeSchema = z.object({
@@ -70,30 +78,7 @@ const HardBreakNodeSchema = z.object({
   type: z.literal('hardBreak'),
 });
 
-interface SpeakerSpanNode {
-  type: 'speakerSpan';
-  attrs: { speakerId: string };
-  content?: InlineNode[];
-}
-
-type InlineNode =
-  | z.infer<typeof TextNodeSchema>
-  | z.infer<typeof HardBreakNodeSchema>
-  | SpeakerSpanNode;
-
-const SpeakerSpanSchema: z.ZodType<SpeakerSpanNode> = z.object({
-  type: z.literal('speakerSpan'),
-  attrs: z.object({
-    speakerId: SpeakerIdSchema,
-  }),
-  content: z.array(z.lazy(() => InlineNodeSchema)).optional(),
-}) as z.ZodType<SpeakerSpanNode>;
-
-const InlineNodeSchema: z.ZodType<InlineNode> = z.union([
-  TextNodeSchema,
-  HardBreakNodeSchema,
-  SpeakerSpanSchema,
-]);
+const InlineNodeSchema = z.union([TextNodeSchema, HardBreakNodeSchema]);
 
 const ImageNodeSchema = z.object({
   type: z.literal('image'),
@@ -101,11 +86,17 @@ const ImageNodeSchema = z.object({
     src: z.string(),
     alt: z.string().optional(),
     title: z.string().optional(),
+    speakerId: SpeakerIdSchema.optional(),
   }),
 });
 
 const HorizontalRuleNodeSchema = z.object({
   type: z.literal('horizontalRule'),
+  attrs: z
+    .object({
+      speakerId: SpeakerIdSchema.optional(),
+    })
+    .optional(),
 });
 
 const ListItemNodeSchema = z.object({
@@ -115,25 +106,21 @@ const ListItemNodeSchema = z.object({
   },
 });
 
-const SpeakerSectionSchema = z.object({
-  type: z.literal('speakerSection'),
-  attrs: z.object({
-    speakerId: SpeakerIdSchema,
-  }),
-  get content() {
-    return z.array(BlockNodeSchema).optional();
-  },
-});
-
 const BlockNodeSchema = z.union([
   z.object({
     type: z.literal('paragraph'),
+    attrs: z
+      .object({
+        speakerId: SpeakerIdSchema.optional(),
+      })
+      .optional(),
     content: z.array(InlineNodeSchema).optional(),
   }),
   z.object({
     type: z.literal('heading'),
     attrs: z.object({
       level: z.number().min(1).max(6),
+      speakerId: SpeakerIdSchema.optional(),
     }),
     content: z.array(InlineNodeSchema).optional(),
   }),
@@ -142,18 +129,29 @@ const BlockNodeSchema = z.union([
     attrs: z
       .object({
         language: z.string().optional(),
+        speakerId: SpeakerIdSchema.optional(),
       })
       .optional(),
     content: z.array(TextNodeSchema).optional(),
   }),
   z.object({
     type: z.literal('blockquote'),
+    attrs: z
+      .object({
+        speakerId: SpeakerIdSchema.optional(),
+      })
+      .optional(),
     get content() {
       return z.array(BlockNodeSchema).optional();
     },
   }),
   z.object({
     type: z.literal('bulletList'),
+    attrs: z
+      .object({
+        speakerId: SpeakerIdSchema.optional(),
+      })
+      .optional(),
     content: z.array(ListItemNodeSchema).optional(),
   }),
   z.object({
@@ -161,13 +159,13 @@ const BlockNodeSchema = z.union([
     attrs: z
       .object({
         start: z.number().optional(),
+        speakerId: SpeakerIdSchema.optional(),
       })
       .optional(),
     content: z.array(ListItemNodeSchema).optional(),
   }),
   HorizontalRuleNodeSchema,
   ImageNodeSchema,
-  SpeakerSectionSchema,
 ]);
 
 export const DocumentTranscriptSchema = z
@@ -178,10 +176,6 @@ export const DocumentTranscriptSchema = z
   .brand(Symbol('DocumentTranscript'));
 
 export type DocumentTranscript = z.infer<typeof DocumentTranscriptSchema>;
-export type SpeakerSection = z.infer<typeof SpeakerSectionSchema>;
-export type { SpeakerSpanNode as SpeakerSpan };
-
-export { SpeakerSectionSchema, SpeakerSpanSchema };
 
 export function createDocumentTranscript(
   transcript: unknown,

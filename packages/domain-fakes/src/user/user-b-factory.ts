@@ -14,5 +14,6 @@ export default function userBFactory() {
     new Date('2024-02-10T12:00:00Z'),
     'Jane',
     'Smith',
+    undefined,
   );
 }

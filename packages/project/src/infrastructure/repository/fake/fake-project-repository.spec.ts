@@ -25,6 +25,7 @@ describe('FakeProjectRepository', () => {
       const project = await repository.create({
         organizationId: organizationA.id,
         name: 'Test Project',
+        defaultHosts: [],
       });
 
       expect(project).toBeDefined();
@@ -38,6 +39,7 @@ describe('FakeProjectRepository', () => {
       const project = await repository.create({
         organizationId: organizationA.id,
         name: 'Test Project',
+        defaultHosts: [],
       });
 
       const found = await repository.find(project.id, organizationA.id);
@@ -50,10 +52,12 @@ describe('FakeProjectRepository', () => {
       const project1 = await repository.create({
         organizationId: organizationA.id,
         name: 'Project 1',
+        defaultHosts: [],
       });
       const project2 = await repository.create({
         organizationId: organizationA.id,
         name: 'Project 2',
+        defaultHosts: [],
       });
 
       expect(project1.id).not.toBe(project2.id);
@@ -70,6 +74,7 @@ describe('FakeProjectRepository', () => {
       const project = await repository.create({
         organizationId: organizationA.id,
         name: 'Test Project',
+        defaultHosts: [],
       });
       const emittedProject = await eventPromise;
 
@@ -184,6 +189,7 @@ describe('FakeProjectRepository', () => {
       const project = await repository.create({
         organizationId: organizationA.id,
         name: 'Workflow Test',
+        defaultHosts: [],
       });
       const found = await repository.find(project.id, organizationA.id);
       expect(found?.name).toBe('Workflow Test');
@@ -225,6 +231,7 @@ describe('FakeProjectRepository', () => {
       const newProject = await repository.create({
         organizationId: organizationA.id,
         name: 'New Project',
+        defaultHosts: [],
       });
       const foundNew = await repository.find(newProject.id, organizationA.id);
       expect(foundNew).toBeDefined();
@@ -267,6 +274,7 @@ describe('FakeProjectRepository', () => {
       const project = await repository.create({
         organizationId: organizationA.id,
         name: 'Event Test',
+        defaultHosts: [],
       });
       const updated = new Project(
         project.id,
@@ -286,6 +294,7 @@ describe('FakeProjectRepository', () => {
       const projectForOrgA = await repository.create({
         organizationId: organizationA.id,
         name: 'Org A Project',
+        defaultHosts: [],
       });
 
       const foundInOrgA = await repository.find(

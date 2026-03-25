@@ -125,6 +125,7 @@ describe('User', () => {
         new Date('2024-01-02'),
         'John',
         'Doe',
+        undefined,
       );
 
       const cloned = User.clone(original);
@@ -146,6 +147,7 @@ describe('User', () => {
         true,
         new Date('2024-01-01'),
         new Date('2024-01-01'),
+        undefined,
         undefined,
         undefined,
       );

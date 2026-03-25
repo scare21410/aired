@@ -74,6 +74,7 @@ describe('FakeProjectQuery', () => {
       const newProject = await repository.create({
         organizationId: organizationA.id,
         name: 'New Project',
+        defaultHosts: [],
       });
 
       const projects = await query.findByOrganizationId(organizationA.id);
